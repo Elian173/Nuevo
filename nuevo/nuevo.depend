@@ -1,0 +1,69 @@
+# depslib dependency file v1.0
+1540761119 source:c:\users\juan\desktop\nuevo\clientes.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"validar.h"
+	"clientes.h"
+
+1540744834 source:c:\users\juan\desktop\nuevo\main.c
+	<stdio.h>
+	<stdlib.h>
+	"clientes.h"
+	"alquileres.h"
+	"fechas.h"
+	"juegos.h"
+	"categorias.h"
+	"validar.h"
+
+1540765461 source:c:\users\juan\desktop\nuevo\alquileres.c
+	<stdio.h>
+	<stdlib.h>
+	"alquileres.h"
+	"validar.h"
+
+1540869835 source:c:\users\juan\desktop\nuevo\juegos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"juegos.h"
+	"categorias.h"
+	"validar.h"
+
+1540740705 source:c:\users\juan\desktop\nuevo\categorias.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"categorias.h"
+	"validar.h"
+
+1540746428 source:c:\users\juan\desktop\nuevo\fechas.c
+	<stdio.h>
+	<stdlib.h>
+	"fechas.h"
+	"validar.h"
+
+1540696272 c:\users\juan\desktop\nuevo\clientes.h
+
+1540745044 c:\users\juan\desktop\nuevo\categorias.h
+
+1540746428 c:\users\juan\desktop\nuevo\fechas.h
+
+1540745370 c:\users\juan\desktop\nuevo\juegos.h
+	"categorias.h"
+
+1540745278 c:\users\juan\desktop\nuevo\alquileres.h
+	"fechas.h"
+	"categorias.h"
+	"juegos.h"
+	"clientes.h"
+
+1540870977 source:c:\users\juan\desktop\nuevo\validar.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"validar.h"
+
+1540744972 c:\users\juan\desktop\nuevo\validar.h
+
