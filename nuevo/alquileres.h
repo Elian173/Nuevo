@@ -91,4 +91,27 @@ int bajaAlquiler(eAlquiler* lista, int TAM_ALQUILERES, int *codigo);
  */
 void mostrarListadoDeAlquileres(eAlquiler* lista, int TAM_ALQUILERES);
 
+/** \brief
+ * \param
+ * \param
+ * \param
+ * \param
+ * \return
+ */
+float total_y_promedio_importes_de_juegos_alquilados(eAlquiler *lista, int TAM_ALQUILERES, eJuego* juegos, int TAM_JUEGOS);
+
+void hardcodearAlquileres(eAlquiler* lista, int TAM_ALQUILERES);
+
+void listadoDeClientesQueALquilaronUnDeterminadoJuego(eAlquiler* lista, int TAM_ALQUILERES, eCliente* clientes, int TAM_CLIENTES, eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS);
+
+void listadoDeJuegosQueALquiloUnDeterminadoCliente(eAlquiler* lista, int TAM_ALQUILERES, eCliente* clientes, int TAM_CLIENTES, eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS);
+
+void juegosMenosAlquilados(eAlquiler* alquileres, int TAM_ALQUILERES, eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS);
+
+void clientesQueRealizaronMasAlquileres(eAlquiler* alquileres, int TAM_ALQUILERES, eCliente* clientes, int TAM_CLIENTES);
+
+void listadoDeJuegosAlquiladosEnUnaDeterminadaFecha(eAlquiler* alquileres, int TAM_ALQUILERES, eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS);
+
+void ClientesQueAlquilaronEnUnaDeterminadaFecha(eAlquiler* alquileres, int TAM_ALQUILERES, eCliente* clientes, int TAM_CLIENTES);
+
 #endif // ALQUILERES_H_INCLUDED

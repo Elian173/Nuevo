@@ -94,4 +94,17 @@ int modificarCliente(eCliente* lista, int TAM_CLIENTES, int *codigo);
  */
 int bajaCliente(eCliente* lista, int TAM_CLIENTES, int *codigo);
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+int menuSeleccionarCliente(eCliente* lista, int TAM_CLIENTES);
+
+void listarClientesXapellidoAscendente_Insercion(eCliente* clientes, int TAM_CLIENTES);
+
+int esHombre(eCliente* clientes, int TAM_CLIENTES, int codigo);
+
 #endif // CLIENTES_H_INCLUDED

@@ -77,7 +77,6 @@ void mostrarJuego(eJuego* juego, eCategoria* categorias, int TAM_CATEGORIAS){
 
 void mostrarListadoDeJuegos(eJuego* lista, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS){
     int* contador = (int*) malloc(sizeof(int));
-    system("cls");
     printf("   ****  Listado de Juegos  **** \n\n");
     printf("Codigo   Descripcion   Importe    Categoria\n\n");
     for(*contador=0; *contador < TAM_JUEGOS; (*contador)++){
@@ -90,12 +89,13 @@ void mostrarListadoDeJuegos(eJuego* lista, int TAM_JUEGOS, eCategoria* categoria
 int menuSeleccionarJuego(eJuego* lista, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS){
     int opcion;
     int* control = (int*) malloc(sizeof(int));
-    system("cls");
-    printf("\n ****  Menu de Juegos  ****\n\n");
-    mostrarListadoDeJuegos(lista, TAM_JUEGOS, categorias, TAM_CATEGORIAS);
-    *control = getInt(&opcion, "\nSeleccione Juego: ", "Error, ingrese un juego de la lista: ", 1, 10, 3);
-    if(*control == 0){
-        opcion = 0;
+    if(lista != NULL && categorias != NULL){
+        system("cls");
+        mostrarListadoDeJuegos(lista, TAM_JUEGOS, categorias, TAM_CATEGORIAS);
+        *control = getInt(&opcion, "\nSeleccione Juego: ", "Error, ingrese un juego de la lista: ", 1, 10, 3);
+        if(*control == 0){
+            opcion = 0;
+        }
     }
     free(control);
     return opcion;
@@ -285,5 +285,61 @@ void hardcodearJuegos(eJuego* lista, int TAM_JUEGOS){
     for(*contador = 0; *contador < TAM_JUEGOS; (*contador)++){
         *(lista+(*contador)) = *(nuevaLista+(*contador));
     }
+    free(contador);
+}
+
+void mostrarListadoDeJuegos_queNoSuperanElImportePromedio(eJuego* lista, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS, float* promedio){
+    int* contador = (int*) malloc(sizeof(int));
+    int* cantJuegos = (int*) malloc(sizeof(int));
+    *cantJuegos = 0;
+    if(lista != NULL && categorias != NULL){
+        printf("   ****  Listado de Juegos  **** \n\n");
+        printf("Codigo   Descripcion   Importe    Categoria\n\n");
+        for(*contador=0; *contador < TAM_JUEGOS; (*contador)++){
+            if((lista+(*contador))->importe <= *promedio){
+                mostrarJuego((lista+(*contador)), categorias, TAM_CATEGORIAS);
+                (*cantJuegos)++;
+            }
+        }
+        printf("\n");
+        printf("El Importe Promedio por juegos alquilados es: %.2f\n", *promedio);
+        printf("La cantidad de juegos que no superan el promedio es: %d\n\n", *cantJuegos);
+    }
+    free(contador);
+    free(cantJuegos);
+}
+
+eJuego* inicializarEnCero(eJuego* juegos, int TAM_JUEGOS){
+    int* contador = (int*) malloc(sizeof(int));
+
+    for(*contador = 0; *contador < TAM_JUEGOS; (*contador)++){
+        (juegos+(*contador))->codigo = 0;
+        strcpy((juegos+(*contador))->descripcion, " ");
+        (juegos+(*contador))->idCategoria = 0;
+        (juegos+(*contador))->importe = 0;
+        (juegos+(*contador))->isEmpty = 0;
+    }
+    free(contador);
+    return juegos;
+}
+
+void listarJuegosOrdenadosXimporteDescendente(eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS){
+    int* contador = (int*) malloc(sizeof(int));
+    int* count = (int*) malloc(sizeof(int));
+    eJuego* auxJuegos = (eJuego*) malloc(sizeof(eJuego));
+    system("cls");
+    for(*contador = 0; *contador < TAM_JUEGOS-1; (*contador)++){
+        for(*count = *contador+1; *count < TAM_JUEGOS; (*count)++){
+            if((juegos+(*contador))->importe < (juegos+(*count))->importe){
+                *auxJuegos = *(juegos+(*count));
+                *(juegos+(*count)) = *(juegos+(*contador));
+                *(juegos+(*contador)) = *auxJuegos;
+            }
+        }
+    }
+    mostrarListadoDeJuegos(juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS);
+
+    free(auxJuegos);
+    free(count);
     free(contador);
 }

@@ -110,4 +110,10 @@ int menuModificarJuego(eJuego* lista, int indice, int TAM_JUEGOS);
  */
 int bajaJuego(eJuego* lista, int TAM_JUEGOS, int *codigo, eCategoria* categorias, int TAM_CATEGORIAS);
 
+void mostrarListadoDeJuegos_queNoSuperanElImportePromedio(eJuego* lista, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS, float* promedio);
+
+eJuego* inicializarEnCero(eJuego* juegos, int TAM_JUEGOS);
+
+void listarJuegosOrdenadosXimporteDescendente(eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS);
+
 #endif // JUEGOS_H_INCLUDED

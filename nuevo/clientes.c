@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
 #include <string.h>
 #include "validar.h"
 #include "clientes.h"
@@ -67,7 +68,6 @@ void mostrarCliente(eCliente* cliente){
 
 int mostrarListadoDeClientes(eCliente* lista, int TAM_CLIENTES){
     int retorno = -1;
-    system("cls");
     printf("   ****  Listado de Clientes  **** \n\n");
     printf("Codigo   Nombre   Sexo      Telefono\n\n");
     if(TAM_CLIENTES > 0 && lista != NULL){
@@ -309,5 +309,72 @@ int bajaCliente(eCliente* lista, int TAM_CLIENTES, int *codigo){
     free(indice);
     free(control);
     free(seguir);
+    return bandera;
+}
+
+int menuSeleccionarCliente(eCliente* lista, int TAM_CLIENTES){
+    int opcion;
+    int* control = (int*) malloc(sizeof(int));
+    if(lista != NULL){
+        system("cls");
+        mostrarListadoDeClientes(lista, TAM_CLIENTES);
+        *control = getInt(&opcion, "\nSeleccione Cliente: ", "Error, ingrese un cliente de la lista: ", 1, 7, 3);
+        if(*control == 0){
+            opcion = 0;
+        }
+    }
+    free(control);
+    return opcion;
+}
+
+void listarClientesXapellidoAscendente_Insercion(eCliente* clientes, int TAM_CLIENTES){
+    int* posicion = (int*) malloc(sizeof(int));
+    int* contador = (int*) malloc(sizeof(int));
+    eCliente* aux = (eCliente*) malloc(sizeof(eCliente));
+    int* bandera = (int*) malloc(sizeof(int));
+    *bandera = 0;
+
+    if(aux == NULL || clientes == NULL){
+        printf("No se consiguio memoria para ordenar el listado\n");
+        exit(1);
+    }else{
+        if(TAM_CLIENTES > 0){
+            for(*contador = 1; *contador <= TAM_CLIENTES; (*contador)++){
+                *posicion = *contador;
+                while((*posicion > 0) && strcmp((clientes+(*posicion))->nombre, (clientes+(*posicion-1))->nombre) < 0){
+                    *aux = *(clientes+(*posicion-1));
+                    *(clientes+(*posicion-1)) = *(clientes+(*posicion));
+                    *(clientes+(*posicion)) = *aux;
+                    (*posicion)--;
+                    *bandera = 1;
+                }
+            }
+        }
+        else{
+            printf("El tamanio del array debe ser mayor a 0.");
+        }
+    }
+    if(*bandera == 1){
+        mostrarListadoDeClientes(clientes, TAM_CLIENTES);
+    }
+    else{
+        printf("Problemas para ordenar el listado de clientes.");
+    }
+    free(bandera);
+    free(posicion);
+    free(contador);
+    free(aux);
+}
+
+int esHombre(eCliente* clientes, int TAM_CLIENTES, int codigo){
+    int bandera = 0;
+
+    for(int contador = 0; contador < TAM_CLIENTES; contador++){
+        if((clientes+contador)->codigo == codigo){
+            if((clientes+contador)->sexo == 'm' || (clientes+contador)->sexo == 'M'){
+                bandera = 1;
+            }
+        }
+    }
     return bandera;
 }

@@ -53,3 +53,26 @@ int ingresarFecha(eFecha fecha){
     free(nuevaFecha);
     return control;
 }
+
+int compararFecha(eFecha fecha1, eFecha fecha2){
+    int esIgual = 0;
+
+    if(fecha1.dia == fecha2.dia && fecha1.mes == fecha2.mes && fecha1.anio == fecha2.anio){
+        esIgual = 1;
+    }
+
+    return esIgual;
+}
+
+void getFecha(eFecha* fecha){
+
+    printf("ingrese dia: ");
+    fflush(stdin);
+    scanf("%d", &fecha->dia);
+    printf("ingrese mes: ");
+    scanf("%d", &fecha->mes);
+    printf("ingrese anio: ");
+    scanf("%d", &fecha->anio);
+
+    fecha->isEmpty = 0;
+}

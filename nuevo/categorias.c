@@ -17,11 +17,13 @@ int iniciarCategorias(eCategoria* lista, int TAM_CATEGORIAS){ // bien!
 }
 
 void obtenerCategoria(eCategoria* lista, int TAM_CATEGORIAS, int juegoIdCat, char* cadena){
-    for(int contador=0; contador < TAM_CATEGORIAS; contador++){
-        if((lista+contador)->id == juegoIdCat){
-            strcpy(cadena, (lista+contador)->descripcion);
+    int* contador = (int*) malloc(sizeof(int));
+    for(*contador = 0; *contador < TAM_CATEGORIAS; (*contador)++){
+        if((lista+(*contador))->id == juegoIdCat){
+            strcpy(cadena, (lista+(*contador))->descripcion);
         }
     }
+    free(contador);
 }
 
 int menuSeleccionarCategoria(eCategoria* lista, int TAM_CATEGORIAS){

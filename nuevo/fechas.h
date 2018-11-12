@@ -21,4 +21,8 @@ int iniciarFechas(eFecha* lista, int TAM_FECHAS);
  */
 int ingresarFecha(eFecha fecha);
 
+int compararFecha(eFecha fecha1, eFecha fecha2);
+
+void getFecha(eFecha* fecha);
+
 #endif // FECHAS_H_INCLUDED
