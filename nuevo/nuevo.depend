@@ -69,3 +69,74 @@
 
 1540744972 c:\users\juan\desktop\nuevo\validar.h
 
+1542071366 source:c:\users\alumno\desktop\nuevo\alquileres.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"alquileres.h"
+	"validar.h"
+	"juegos.h"
+
+1542071221 c:\users\alumno\desktop\nuevo\alquileres.h
+	"fechas.h"
+	"categorias.h"
+	"juegos.h"
+	"clientes.h"
+
+1542063565 c:\users\alumno\desktop\nuevo\fechas.h
+
+1542063565 c:\users\alumno\desktop\nuevo\categorias.h
+
+1542066988 c:\users\alumno\desktop\nuevo\juegos.h
+	"categorias.h"
+
+1542063565 c:\users\alumno\desktop\nuevo\clientes.h
+
+1542063565 c:\users\alumno\desktop\nuevo\validar.h
+
+1542063565 source:c:\users\alumno\desktop\nuevo\categorias.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"categorias.h"
+	"validar.h"
+
+1542063565 source:c:\users\alumno\desktop\nuevo\clientes.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"validar.h"
+	"clientes.h"
+
+1542063565 source:c:\users\alumno\desktop\nuevo\fechas.c
+	<stdio.h>
+	<stdlib.h>
+	"fechas.h"
+	"validar.h"
+
+1542068314 source:c:\users\alumno\desktop\nuevo\juegos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"juegos.h"
+	"categorias.h"
+	"validar.h"
+
+1542071239 source:c:\users\alumno\desktop\nuevo\main.c
+	<stdio.h>
+	<stdlib.h>
+	"clientes.h"
+	"alquileres.h"
+	"fechas.h"
+	"juegos.h"
+	"categorias.h"
+	"validar.h"
+
+1542070951 source:c:\users\alumno\desktop\nuevo\validar.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"validar.h"
+

@@ -42,6 +42,11 @@ int menu(){ // bien!
     printf(" 21- Juegos ordenados por importe (descendente)\n");
     printf(" 22- Clientes ordenados por apellido (ascendente - insercion)\n");
     printf("-------------------------------------------------------------------------------------------\n");
+    printf("*** Recuperatorio ***\n\n");
+    printf(" 23- Juegos de una Marca determinada\n");
+    printf(" 24- Contador de alquileres para una Marca determinada\n");
+    printf(" 25- Clientes que alquilaron Juegos de una Marca determinada\n");
+    printf("-------------------------------------------------------------------------------------------\n");
     printf(" 30- Salir\n\n");
     *control = getInt(&opcion, "Ingrese opcion: ", "Error, ingrese una opcion de la lista: ", 1, 30, 3);
     if(*control == -1){

@@ -3,6 +3,7 @@
 #include <string.h>
 #include "alquileres.h"
 #include "validar.h"
+#include "juegos.h"
 
 #define OCUPADO 0
 #define VACIO 1
@@ -59,7 +60,7 @@ int comprobarRegistroAlquiler(eAlquiler* lista, int TAM_ALQUILERES){
     return bandera;
 }
 
-int ingresarAlquiler(eAlquiler* lista, int TAM_ALQUILERES, eCliente* clientes, int TAM_CLIENTES, eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS){
+int ingresarAlquiler(eAlquiler* lista, int TAM_ALQUILERES, eCliente* clientes, int TAM_CLIENTES, eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS, eMarca* marcas, int TAM_MARCAS){
     int* indice = (int*) malloc(sizeof(int));
     int control;
     int* codigoCliente = (int*) malloc(sizeof(int));
@@ -75,7 +76,7 @@ int ingresarAlquiler(eAlquiler* lista, int TAM_ALQUILERES, eCliente* clientes, i
             control = -1;
         }else{
             nuevoAlquiler->codigoDeAlquiler = *indice + 1;
-            control = menuSeleccionarJuego(juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS);
+            control = menuSeleccionarJuego(juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
             if(control == 0){
                 printf("\nSe agotaron las chances y no se pudo ingresar el codigo de juego.\n");
             }else{
@@ -317,7 +318,7 @@ void hardcodearAlquileres(eAlquiler* lista, int TAM_ALQUILERES){
     free(contador);
 }
 
-void listadoDeClientesQueALquilaronUnDeterminadoJuego(eAlquiler* lista, int TAM_ALQUILERES, eCliente* clientes, int TAM_CLIENTES, eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS){
+void listadoDeClientesQueALquilaronUnDeterminadoJuego(eAlquiler* lista, int TAM_ALQUILERES, eCliente* clientes, int TAM_CLIENTES, eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS, eMarca* marcas, int TAM_MARCAS){
     int* contador = (int*) malloc(sizeof(int));
     int* opcion = (int*) malloc(sizeof(int));
     int* count = (int*) malloc(sizeof(int));
@@ -325,7 +326,7 @@ void listadoDeClientesQueALquilaronUnDeterminadoJuego(eAlquiler* lista, int TAM_
     char* descript = (char*) malloc(sizeof(char)*20);
     *bandera = 0;
     if(lista != NULL && clientes != NULL && juegos != NULL && categorias != NULL){
-        *opcion = menuSeleccionarJuego(juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS);
+        *opcion = menuSeleccionarJuego(juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
         printf("\n");
         mostrarListadoDeAlquileres(lista, TAM_ALQUILERES);
         for(*contador = 0; *contador < TAM_JUEGOS; (*contador)++){
@@ -357,7 +358,7 @@ void listadoDeClientesQueALquilaronUnDeterminadoJuego(eAlquiler* lista, int TAM_
     free(bandera);
 }
 
-void listadoDeJuegosQueALquiloUnDeterminadoCliente(eAlquiler* lista, int TAM_ALQUILERES, eCliente* clientes, int TAM_CLIENTES, eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS){
+void listadoDeJuegosQueALquiloUnDeterminadoCliente(eAlquiler* lista, int TAM_ALQUILERES, eCliente* clientes, int TAM_CLIENTES, eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS, eMarca* marcas, int TAM_MARCAS){
     int* contador = (int*) malloc(sizeof(int));
     int* opcion = (int*) malloc(sizeof(int));
     int* count = (int*) malloc(sizeof(int));
@@ -374,12 +375,12 @@ void listadoDeJuegosQueALquiloUnDeterminadoCliente(eAlquiler* lista, int TAM_ALQ
         printf("\n");
         mostrarListadoDeAlquileres(lista, TAM_ALQUILERES);
         printf("\n   ****  Listado de Juegos alquilados por %s **** \n\n", name);
-        printf("Codigo   Descripcion   Importe    Categoria\n\n");
+        printf("Codigo   Descripcion   Marca   Importe    Categoria\n\n");
         for(*contador = 0; *contador < TAM_ALQUILERES; (*contador)++){
             if((lista+(*contador))->codigoDeCliente == *opcion){
                 for(*count = 0; *count < TAM_JUEGOS; (*count)++){
                     if((juegos+(*count))->codigo == (lista+(*contador))->codigoDeJuego){
-                        mostrarJuego(juegos+(*count), categorias, TAM_CATEGORIAS);
+                        mostrarJuego(juegos+(*count), categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
                         *bandera = 1;
                     }
                 }
@@ -397,7 +398,7 @@ void listadoDeJuegosQueALquiloUnDeterminadoCliente(eAlquiler* lista, int TAM_ALQ
     free(name);
 }
 
-void juegosMenosAlquilados(eAlquiler* alquileres, int TAM_ALQUILERES, eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS){
+void juegosMenosAlquilados(eAlquiler* alquileres, int TAM_ALQUILERES, eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS, eMarca* marcas, int TAM_MARCAS){
     int* contador = (int*) malloc(sizeof(int));
     int* count = (int*) malloc(sizeof(int));
     int* contJuego = (int*) malloc(sizeof(int)*TAM_JUEGOS);
@@ -424,10 +425,10 @@ void juegosMenosAlquilados(eAlquiler* alquileres, int TAM_ALQUILERES, eJuego* ju
     *promedio = *acumulador / (float) (*cantidad);
     system("cls");
     printf("   ****  Listado de Juegos Menos Alquilados **** \n\n");
-    printf("Codigo   Descripcion   Importe    Categoria\n\n");
+    printf("Codigo   Descripcion   Marca   Importe    Categoria\n\n");
     for(*contador = 0; *contador < TAM_JUEGOS; (*contador)++){
         if(*(contJuego+(*contador)) < (*promedio)){
-            mostrarJuego((juegos+(*contador)), categorias, TAM_CATEGORIAS);
+            mostrarJuego((juegos+(*contador)), categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
         }
     }
     printf("\n");
@@ -483,7 +484,7 @@ void clientesQueRealizaronMasAlquileres(eAlquiler* alquileres, int TAM_ALQUILERE
     free(contAlquileres);
 }
 
-void listadoDeJuegosAlquiladosEnUnaDeterminadaFecha(eAlquiler* alquileres, int TAM_ALQUILERES, eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS){
+void listadoDeJuegosAlquiladosEnUnaDeterminadaFecha(eAlquiler* alquileres, int TAM_ALQUILERES, eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS, eMarca* marcas, int TAM_MARCAS){
     int* contador = (int*) malloc(sizeof(int));
     int* count = (int*) malloc(sizeof(int));
     int* bandera = (int*) malloc(sizeof(int));
@@ -493,12 +494,12 @@ void listadoDeJuegosAlquiladosEnUnaDeterminadaFecha(eAlquiler* alquileres, int T
         getFecha(auxFecha);
         system("cls");
         printf("\n   ****  Listado de Juegos alquilados en la fecha %d/%d/%d **** \n\n", auxFecha->dia, auxFecha->mes, auxFecha->anio);
-        printf("Codigo   Descripcion   Importe    Categoria\n\n");
+        printf("Codigo   Descripcion   Marca   Importe    Categoria\n\n");
         for(*contador = 0; *contador < TAM_ALQUILERES; (*contador)++){
             if(compararFecha((alquileres+(*contador))->fecha, *auxFecha)){
                 for(*count = 0; *count < TAM_JUEGOS; (*count)++){
                     if((alquileres+(*contador))->codigoDeJuego == (juegos+(*count))->codigo){
-                        mostrarJuego(juegos+(*count), categorias, TAM_CATEGORIAS);
+                        mostrarJuego(juegos+(*count), categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
                         *bandera = 1;
                     }
                 }
@@ -561,4 +562,59 @@ void ClientesQueAlquilaronEnUnaDeterminadaFecha(eAlquiler* alquileres, int TAM_A
     free(cantAlq);
     free(yaPaso);
     free(auxFecha);
+}
+
+void contadorDeAlquileresParaUnaMarcaDeterminada(eAlquiler* alquileres, int TAM_ALQUILERES, eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS, eMarca* marcas, int TAM_MARCAS){
+    int opcion, acumulador = 0;
+    system("cls");
+    opcion = menuSeleccionarMarca(marcas, TAM_MARCAS);
+    for(int contador = 0; contador < TAM_JUEGOS; contador++){
+        if((juegos+contador)->idMarca == opcion){
+            for(int count = 0; count < TAM_ALQUILERES; count++){
+                if((juegos+contador)->codigo == (alquileres+count)->codigoDeJuego){
+                    acumulador++;
+                }
+            }
+        }
+    }
+    printf("\n");
+    mostrarListadoDeJuegos(juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
+    mostrarListadoDeAlquileres(alquileres, TAM_ALQUILERES);
+    if(acumulador != 0){
+        printf("\nSe registraron %d alquileres de la marca determinada.\n\n", acumulador);
+    }
+    else{
+        printf("\n no hay registros de juegos alquilados con esa marca.\n\n");
+    }
+}
+
+void clientesQueAlquilaronJuegosDeUnaDeterminadaMarca(eAlquiler* alquileres, int TAM_ALQUILERES, eCliente* clientes, int TAM_CLIENTES, eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS, eMarca* marcas, int TAM_MARCAS){
+    int opcion, bandera = 0;
+    system("cls");
+    opcion = menuSeleccionarMarca(marcas, TAM_MARCAS);
+    printf("\nCodigo   Nombre   Sexo      Telefono\n\n");
+    for(int contador = 0; contador < TAM_JUEGOS; contador++){
+        if((juegos+contador)->idMarca == opcion){
+            for(int count = 0; count < TAM_ALQUILERES; count++){
+                if((juegos+contador)->codigo == (alquileres+count)->codigoDeJuego){
+                    for(int contar = 0; contar < TAM_CLIENTES; contar++){
+                        if((alquileres+count)->codigoDeCliente == (clientes+contar)->codigo){
+                            mostrarCliente(clientes+contar);
+                            bandera = 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    printf("\n");
+    mostrarListadoDeJuegos(juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
+    printf("\n");
+    mostrarListadoDeAlquileres(alquileres, TAM_ALQUILERES);
+    printf("\n");
+    mostrarListadoDeClientes(clientes, TAM_CLIENTES);
+    printf("\n");
+    if(bandera != 1){
+        printf("\n no hay registros de alquileres para esa marca.\n\n");
+    }
 }

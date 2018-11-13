@@ -12,6 +12,7 @@
 #define TAM_JUEGOS 10
 #define TAM_CATEGORIAS 5
 #define TAM_FECHAS 10
+#define TAM_MARCAS 5
 #define OCUPADO 0
 #define VACIO 1
 
@@ -26,6 +27,7 @@ int main()
     eAlquiler* alquileres = (eAlquiler*) malloc(sizeof(eAlquiler)*TAM_ALQUILERES);
     eCategoria* categorias = (eCategoria*) malloc(sizeof(eCategoria)*TAM_CATEGORIAS);
     eJuego* juegos = (eJuego*) malloc(sizeof(eJuego)*TAM_JUEGOS);
+    eMarca* marcas = (eMarca*) malloc(sizeof(eMarca)*TAM_MARCAS);
     // Iniciar y hardcodeos
     *banderaPromedio = 0;
     iniciarClientes(clientes, TAM_CLIENTES);
@@ -34,6 +36,7 @@ int main()
     hardcodearJuegos(juegos, TAM_JUEGOS);
     hardcodearClientes(clientes, TAM_CLIENTES);
     hardcodearAlquileres(alquileres, TAM_ALQUILERES);
+    hardcodearMarca(marcas, TAM_MARCAS);
 
     do{
         switch(menu()){
@@ -98,7 +101,7 @@ int main()
                 system("pause");
                 break;
             case 5:
-                ok = ingresarAlquiler(alquileres, TAM_ALQUILERES, clientes, TAM_CLIENTES, juegos, 10, categorias, 5);
+                ok = ingresarAlquiler(alquileres, TAM_ALQUILERES, clientes, TAM_CLIENTES, juegos, TAM_ALQUILERES, categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
                 if(ok == -1){
                     printf("\nNo se encontro espacio para el registro.\n\n");
                 }else{
@@ -157,7 +160,7 @@ int main()
                 system("pause");
                 break;
             case 9:
-                ok = ingresarJuego(juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS);
+                ok = ingresarJuego(juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
                 if(ok == -1){
                     printf("\nNo se encontro espacio para el registro.\n\n");
                 }else{
@@ -174,7 +177,7 @@ int main()
                 if(ok == -1){
                     printf("\nHasta el momento no se ha registrado ningun juego.\n\n");
                 }else{
-                    modificarJuego(juegos, TAM_JUEGOS, &codigo, categorias, TAM_CATEGORIAS); //modificar juego !
+                    modificarJuego(juegos, TAM_JUEGOS, &codigo, categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS); //modificar juego !
                     if(ok == -1){
                         printf("\nNo se encontro alquiler correspondiente al codigo %i.\n\n", codigo);
                     }else{
@@ -192,7 +195,7 @@ int main()
                 if(ok == -1){
                     printf("\nHasta el momento no se ha registrado ningun Juego.\n\n");
                 }else{
-                    ok = bajaJuego(juegos, TAM_JUEGOS, &codigo, categorias, TAM_CATEGORIAS);
+                    ok = bajaJuego(juegos, TAM_JUEGOS, &codigo, categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
                     if(ok == -1){
                         printf("\nNo se encontro juego correspondiente al codigo %i.\n\n", codigo);
                     }else{
@@ -211,13 +214,13 @@ int main()
                     printf("\nHasta el momento no se ha registrado ningun juego.\n\n");
                 }else{
                     system("cls");
-                    mostrarListadoDeJuegos(juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS);
+                    mostrarListadoDeJuegos(juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
                 }
                 system("pause");
                 break;
             case 13:
                 system("cls");
-                mostrarListadoDeJuegos(juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS);
+                mostrarListadoDeJuegos(juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
                 printf("\n");
                 mostrarListadoDeAlquileres(alquileres, TAM_ALQUILERES);
                 if(promedio != NULL){
@@ -229,22 +232,22 @@ int main()
             case 14:
                 if(*banderaPromedio == 1){
                     system("cls");
-                    mostrarListadoDeJuegos_queNoSuperanElImportePromedio(juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS, promedio);
+                    mostrarListadoDeJuegos_queNoSuperanElImportePromedio(juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS, promedio, marcas, TAM_MARCAS);
                 }else{
                     printf("\nNo se calculo el Promedio del Importe por Juegos Alquilados.\n\n");
                 }
                 system("pause");
                 break;
             case 15:
-                listadoDeClientesQueALquilaronUnDeterminadoJuego(alquileres, TAM_ALQUILERES, clientes, TAM_CLIENTES, juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS);
+                listadoDeClientesQueALquilaronUnDeterminadoJuego(alquileres, TAM_ALQUILERES, clientes, TAM_CLIENTES, juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
                 system("pause");
                 break;
             case 16:
-                listadoDeJuegosQueALquiloUnDeterminadoCliente(alquileres, TAM_ALQUILERES, clientes, TAM_CLIENTES, juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS);
+                listadoDeJuegosQueALquiloUnDeterminadoCliente(alquileres, TAM_ALQUILERES, clientes, TAM_CLIENTES, juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
                 system("pause");
                 break;
             case 17:
-                juegosMenosAlquilados(alquileres, TAM_ALQUILERES, juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS);
+                juegosMenosAlquilados(alquileres, TAM_ALQUILERES, juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
                 system("pause");
                 break;
             case 18:
@@ -252,7 +255,7 @@ int main()
                 system("pause");
                 break;
             case 19:
-                listadoDeJuegosAlquiladosEnUnaDeterminadaFecha(alquileres, TAM_ALQUILERES, juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS);
+                listadoDeJuegosAlquiladosEnUnaDeterminadaFecha(alquileres, TAM_ALQUILERES, juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
                 system("pause");
                 break;
             case 20:
@@ -260,11 +263,23 @@ int main()
                 system("pause");
                 break;
             case 21:
-                listarJuegosOrdenadosXimporteDescendente(juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS);
+                listarJuegosOrdenadosXimporteDescendente(juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
                 system("pause");
                 break;
             case 22:
                 listarClientesXapellidoAscendente_Insercion(clientes, TAM_CLIENTES);
+                system("pause");
+                break;
+            case 23:
+                JuegosDeUnaMarcaDeterminada(juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
+                system("pause");
+                break;
+            case 24:
+                contadorDeAlquileresParaUnaMarcaDeterminada(alquileres, TAM_ALQUILERES, juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
+                system("pause");
+                break;
+            case 25:
+                clientesQueAlquilaronJuegosDeUnaDeterminadaMarca(alquileres, TAM_ALQUILERES, clientes, TAM_CLIENTES, juegos, TAM_JUEGOS, categorias, TAM_CATEGORIAS, marcas, TAM_MARCAS);
                 system("pause");
                 break;
             case 30:

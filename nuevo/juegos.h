@@ -5,10 +5,16 @@
 typedef struct{
     int codigo;
     char descripcion[20];
+    int idMarca;
     float importe;
     int idCategoria;
     int isEmpty;
 }eJuego;
+
+typedef struct{
+    int idMarca;
+    char nombre[20];
+}eMarca;
 
 /** \brief
  * \param
@@ -32,7 +38,7 @@ int buscarJuego(eJuego* lista, int TAM_JUEGOS, int codigo);
  * \param
  * \return
  */
-void mostrarJuego(eJuego* juego, eCategoria* categorias, int TAM_CATEGORIAS);
+void mostrarJuego(eJuego* juego, eCategoria* categorias, int TAM_CATEGORIAS, eMarca* marcas, int TAM_MARCAS);
 
 /** \brief
  * \param
@@ -41,7 +47,7 @@ void mostrarJuego(eJuego* juego, eCategoria* categorias, int TAM_CATEGORIAS);
  * \param
  * \return
  */
-void mostrarListadoDeJuegos(eJuego* lista, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS);
+void mostrarListadoDeJuegos(eJuego* lista, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS, eMarca* marcas, int TAM_MARCAS);
 
 /** \brief
  * \param
@@ -50,7 +56,7 @@ void mostrarListadoDeJuegos(eJuego* lista, int TAM_JUEGOS, eCategoria* categoria
  * \param
  * \return
  */
-int menuSeleccionarJuego(eJuego* lista, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS);
+int menuSeleccionarJuego(eJuego* lista, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS, eMarca* marcas, int TAM_MARCAS);
 
 /** \brief
  * \param
@@ -80,7 +86,7 @@ int comprobarRegistroJuegos(eJuego* lista, int TAM_JUEGOS);
  * \param
  * \return
  */
-int ingresarJuego(eJuego* lista, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS);
+int ingresarJuego(eJuego* lista, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS, eMarca* marcas, int TAM_MARCAS);
 
 /** \brief
  * \param
@@ -90,7 +96,7 @@ int ingresarJuego(eJuego* lista, int TAM_JUEGOS, eCategoria* categorias, int TAM
  * \param
  * \return
  */
-int modificarJuego(eJuego* lista, int TAM_JUEGOS, int *codigo, eCategoria* categorias, int TAM_CATEGORIAS);
+int modificarJuego(eJuego* lista, int TAM_JUEGOS, int *codigo, eCategoria* categorias, int TAM_CATEGORIAS, eMarca* marcas, int TAM_MARCAS);
 
 /** \brief
  * \param
@@ -108,12 +114,19 @@ int menuModificarJuego(eJuego* lista, int indice, int TAM_JUEGOS);
  * \param
  * \return
  */
-int bajaJuego(eJuego* lista, int TAM_JUEGOS, int *codigo, eCategoria* categorias, int TAM_CATEGORIAS);
+int bajaJuego(eJuego* lista, int TAM_JUEGOS, int *codigo, eCategoria* categorias, int TAM_CATEGORIAS, eMarca* marcas, int TAM_MARCAS);
 
-void mostrarListadoDeJuegos_queNoSuperanElImportePromedio(eJuego* lista, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS, float* promedio);
+void mostrarListadoDeJuegos_queNoSuperanElImportePromedio(eJuego* lista, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS, float* promedio, eMarca* marcas, int TAM_MARCAS);
 
 eJuego* inicializarEnCero(eJuego* juegos, int TAM_JUEGOS);
 
-void listarJuegosOrdenadosXimporteDescendente(eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS);
+void listarJuegosOrdenadosXimporteDescendente(eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS, eMarca* marcas, int TAM_MARCAS);
+void obtenerMarca(eMarca* lista, int TAM_MARCAS, int juegoIdMarca, char* cadena);
+int menuSeleccionarMarca(eMarca* lista, int TAM_MARCAS);
+void mostrarListadoDeMarcas(eMarca* lista, int TAM_MARCAS);
+void mostrarMarca(eMarca* marca);
+void hardcodearMarca(eMarca* lista, int TAM_MARCAS);
+
+void JuegosDeUnaMarcaDeterminada(eJuego* juegos, int TAM_JUEGOS, eCategoria* categorias, int TAM_CATEGORIAS, eMarca* marcas, int TAM_MARCAS);
 
 #endif // JUEGOS_H_INCLUDED
