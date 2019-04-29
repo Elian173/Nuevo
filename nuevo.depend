@@ -1,0 +1,213 @@
+# depslib dependency file v1.0
+1542052328 source:c:\users\juan\desktop\nuevo\clientes.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"validar.h"
+	"clientes.h"
+
+1542046473 source:c:\users\juan\desktop\nuevo\main.c
+	<stdio.h>
+	<stdlib.h>
+	"clientes.h"
+	"alquileres.h"
+	"fechas.h"
+	"juegos.h"
+	"categorias.h"
+	"validar.h"
+
+1542043005 source:c:\users\juan\desktop\nuevo\alquileres.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"alquileres.h"
+	"validar.h"
+
+1542003020 source:c:\users\juan\desktop\nuevo\juegos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"juegos.h"
+	"categorias.h"
+	"validar.h"
+
+1541307834 source:c:\users\juan\desktop\nuevo\categorias.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"categorias.h"
+	"validar.h"
+
+1541999576 source:c:\users\juan\desktop\nuevo\fechas.c
+	<stdio.h>
+	<stdlib.h>
+	"fechas.h"
+	"validar.h"
+
+1542052340 c:\users\juan\desktop\nuevo\clientes.h
+
+1540745044 c:\users\juan\desktop\nuevo\categorias.h
+
+1541999232 c:\users\juan\desktop\nuevo\fechas.h
+
+1542002890 c:\users\juan\desktop\nuevo\juegos.h
+	"categorias.h"
+
+1542000750 c:\users\juan\desktop\nuevo\alquileres.h
+	"fechas.h"
+	"categorias.h"
+	"juegos.h"
+	"clientes.h"
+
+1542046472 source:c:\users\juan\desktop\nuevo\validar.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"validar.h"
+
+1540744972 c:\users\juan\desktop\nuevo\validar.h
+
+1542071366 source:c:\users\alumno\desktop\nuevo\alquileres.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"alquileres.h"
+	"validar.h"
+	"juegos.h"
+
+1542071221 c:\users\alumno\desktop\nuevo\alquileres.h
+	"fechas.h"
+	"categorias.h"
+	"juegos.h"
+	"clientes.h"
+
+1542063565 c:\users\alumno\desktop\nuevo\fechas.h
+
+1542063565 c:\users\alumno\desktop\nuevo\categorias.h
+
+1542066988 c:\users\alumno\desktop\nuevo\juegos.h
+	"categorias.h"
+
+1542063565 c:\users\alumno\desktop\nuevo\clientes.h
+
+1542063565 c:\users\alumno\desktop\nuevo\validar.h
+
+1542063565 source:c:\users\alumno\desktop\nuevo\categorias.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"categorias.h"
+	"validar.h"
+
+1542063565 source:c:\users\alumno\desktop\nuevo\clientes.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"validar.h"
+	"clientes.h"
+
+1542063565 source:c:\users\alumno\desktop\nuevo\fechas.c
+	<stdio.h>
+	<stdlib.h>
+	"fechas.h"
+	"validar.h"
+
+1542068314 source:c:\users\alumno\desktop\nuevo\juegos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"juegos.h"
+	"categorias.h"
+	"validar.h"
+
+1542071239 source:c:\users\alumno\desktop\nuevo\main.c
+	<stdio.h>
+	<stdlib.h>
+	"clientes.h"
+	"alquileres.h"
+	"fechas.h"
+	"juegos.h"
+	"categorias.h"
+	"validar.h"
+
+1542070951 source:c:\users\alumno\desktop\nuevo\validar.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"validar.h"
+
+1542071830 source:c:\users\juan\desktop\juan\nuevo-master\nuevo\alquileres.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"alquileres.h"
+	"validar.h"
+	"juegos.h"
+
+1556506336 c:\users\juan\desktop\juan\nuevo-master\nuevo\alquileres.h
+	"fechas.h"
+	"categorias.h"
+	"juegos.h"
+	"clientes.h"
+
+1542071830 c:\users\juan\desktop\juan\nuevo-master\nuevo\fechas.h
+
+1556506336 c:\users\juan\desktop\juan\nuevo-master\nuevo\categorias.h
+
+1556507206 c:\users\juan\desktop\juan\nuevo-master\nuevo\juegos.h
+	"categorias.h"
+
+1542071830 c:\users\juan\desktop\juan\nuevo-master\nuevo\clientes.h
+
+1542071830 c:\users\juan\desktop\juan\nuevo-master\nuevo\validar.h
+
+1556506336 source:c:\users\juan\desktop\juan\nuevo-master\nuevo\categorias.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"categorias.h"
+	"validar.h"
+
+1542071830 source:c:\users\juan\desktop\juan\nuevo-master\nuevo\clientes.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"validar.h"
+	"clientes.h"
+
+1542071830 source:c:\users\juan\desktop\juan\nuevo-master\nuevo\fechas.c
+	<stdio.h>
+	<stdlib.h>
+	"fechas.h"
+	"validar.h"
+
+1556507206 source:c:\users\juan\desktop\juan\nuevo-master\nuevo\juegos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"juegos.h"
+	"categorias.h"
+	"validar.h"
+
+1542071830 source:c:\users\juan\desktop\juan\nuevo-master\nuevo\validar.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"validar.h"
+
+1556505166 source:c:\users\juan\desktop\juan\nuevo-master\nuevo\main.c
+	<stdio.h>
+	<stdlib.h>
+	"clientes.h"
+	"alquileres.h"
+	"fechas.h"
+	"juegos.h"
+	"categorias.h"
+	"validar.h"
+
